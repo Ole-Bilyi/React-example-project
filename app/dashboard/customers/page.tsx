@@ -1,8 +1,15 @@
-import Link from 'next/link';
+import Search from '@/app/ui/search';
+import Table from '@/app/ui/customers/table';
+import { Metadata } from 'next';
+import { fetchFilteredCustomers } from '@/app/lib/data';
+export const metadata: Metadata = {
+  title: 'Customers',
+};
+const customers = await fetchFilteredCustomers("");
 export default function Page() {
     return (
-    <Link href="../" className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base">
-            <span>Log in</span>
-          </Link>
+      <div className="w-full">
+              <Table customers={customers}/>
+          </div>
     );
   }
